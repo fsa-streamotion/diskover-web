@@ -2,34 +2,11 @@ apiVersion: skaffold/v1beta11
 kind: Config
 build:
   artifacts:
-#  - image: customize!project.name
-  - image: diskover-web # Please do not edit this line! Managed by customize.sh
+  - image: diskover-web
     context: .
-    jibMaven: {}
-    # docker:
-    #   network: host
+    docker:
+      network: host
+      dockerfile: Dockerfile
   tagPolicy:
     envTemplate:
-#      template: '{{.DOCKER_REGISTRY}}/customize!project.org/customize!project.name:{{.VERSION}}'
-      template: '{{.DOCKER_REGISTRY}}/fsa-streamotion/diskover-web:{{.VERSION}}' # Please do not edit this line! Managed by customize.sh
-  local: {}
-deploy:
-  kubectl: {}
-profiles:
-- name: dev
-  build:
-    tagPolicy:
-      envTemplate:
-#        template: '{{.DOCKER_REGISTRY}}/customize!project.org/customize!project.name:SNAPSHOT-{{.UUID}}'
-        template: '{{.DOCKER_REGISTRY}}/fsa-streamotion/diskover-web:SNAPSHOT-{{.UUID}}' # Please do not edit this line! Managed by customize.sh
-    local: {}
-  deploy:
-    helm:
-      releases:
-#      - name: customize!project.name
-      - name: diskover-web # Please do not edit this line! Managed by customize.sh
-        chartPath: charts/helm-release
-        setValueTemplates:
-#          image.repository: '{{.DOCKER_REGISTRY}}/customize!project.org/customize!project.name'
-          image.repository: '{{.DOCKER_REGISTRY}}/fsa-streamotion/diskover-web' # Please do not edit this line! Managed by customize.sh
-          image.tag: 'SNAPSHOT-{{.UUID}}'
+      template: '{{.DOCKER_REGISTRY}}/diskover-web:{{.VERSION}}'
