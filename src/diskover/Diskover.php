@@ -17,7 +17,10 @@ $VERSION = '1.5.0.6';
 
 function connectES() {
     // Connect to Elasticsearch node
+    $esHost = getenv('APP_ES_HOST') ?: Constants::ES_HOST;
     $esPort = getenv('APP_ES_PORT') ?: Constants::ES_PORT;
+    $esUser = getenv('APP_ES_USER') ?: Constants::ES_USER;
+    $esPass = getenv('APP_ES_PASS') ?: Constants::ES_PASS;
     $esIndex = getenv('APP_ES_INDEX') ?: getCookie('index');
     $esIndex2 = getenv('APP_ES_INDEX2') ?: getCookie('index2');
     if (Constants::AWS) {
@@ -28,12 +31,12 @@ function connectES() {
             $scheme = 'http';
         }
         $hosts = [
-            [ 'host' => Constants::ES_HOST, 'port' => $esPort, 'scheme' => $scheme ]
+            [ 'host' => $esHost, 'port' => $esPort, 'scheme' => $scheme ]
         ];
     } else {
         $hosts = [
-            [ 'host' => Constants::ES_HOST, 'port' => $esPort, 
-            'user' => Constants::ES_USER, 'pass' => Constants::ES_PASS ]
+            [ 'host' => $esHost, 'port' => $esPort, 
+            'user' => $esUser, 'pass' => $esPass ]
             ];
     }
 
