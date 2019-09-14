@@ -9,13 +9,7 @@ image:
 
 # define environment variables here as a map of key: value
 env:
-  SPRING_PROFILES_ACTIVE: demo
-#  NEW_RELIC_APP_NAME: customize!project.name
-  NEW_RELIC_APP_NAME: diskover-web # Please do not edit this line! Managed by customize.sh
-  NEW_RELIC_LICENSE_KEY: 70e37aaa633e349320a9c1107d5daca497fc4791
-  NEW_RELIC_AGENT_ENABLED: false
-  NEW_RELIC_DISTRIBUTED_TRACING_ENABLED: false
-
+  APP_ES_HOST: preview-elasticsearch-client.diskover-pr-8.svc.cluster.local
 
 # enable this flag to use knative serve to deploy the app
 knativeDeploy: false
