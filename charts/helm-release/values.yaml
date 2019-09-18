@@ -9,7 +9,7 @@ image:
 
 # define environment variables here as a map of key: value
 env:
-  APP_ES_HOST: preview-elasticsearch-client.diskover-pr-8.svc.cluster.local
+  APP_ES_HOST: es-ing-service.diskover-pr-11.dev.cluster.foxsports-gitops-prod.com.au
 
 # enable this flag to use knative serve to deploy the app
 knativeDeploy: false
